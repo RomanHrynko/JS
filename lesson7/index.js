@@ -1,1 +1,0 @@
-const getSpecialNumbers = numbers => numbers;
