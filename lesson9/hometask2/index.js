@@ -19,7 +19,7 @@ function addPropertyV3(userData, userId) {
 }
 // put your code here
 function addPropertyV4(userData, userId) {
-  const spreadObj = Object.assign({}, userData);
+  const spreadObj = { ...userData };
   spreadObj.id = userId;
   return spreadObj;
 }
