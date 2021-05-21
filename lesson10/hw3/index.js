@@ -6,4 +6,4 @@ const superRound = (num, fixed) => [
   +num.toFixed(fixed),
 ];
 
-console.log(multiRound(13.511242, 3));
+console.log(superRound(13.511242, 3));
