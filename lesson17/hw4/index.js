@@ -14,3 +14,5 @@ export const user = {
 console.log(user.getFullName());
 
 console.log(user.setFullName('Roman Hrynko'));
+console.log(user.firstName);
+console.log(user.lastName);
