@@ -1,4 +1,4 @@
-const squaredNumbers = () => {
+export const squaredNumbers = () => {
   const numbersElement = document.querySelectorAll('.number');
   console.log(numbersElement);
   [...numbersElement].map(el => {
