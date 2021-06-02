@@ -1,4 +1,4 @@
-const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'St', 'Su'];
+const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'St'];
 
 export const dayOfWeek = (date, days) => {
   const day = new Date(date).getDate();
