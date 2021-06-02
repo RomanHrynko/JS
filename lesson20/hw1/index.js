@@ -39,6 +39,7 @@ console.log(order.consfirmOrder());
 console.log(order.isValidType());
 console.log(order.id);
 console.log(order.dateConfirmed);
+console.log(order.isConfirmed);
 
 const order1 = new Order(900, 'Peremozhne', 'Buy');
 console.log(order1.checkPrice());
