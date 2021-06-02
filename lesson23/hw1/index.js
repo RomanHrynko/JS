@@ -7,7 +7,7 @@ const tasks = [
   { text: 'Visit doctor', done: true, id: Math.random() },
   { text: 'Buy meat', done: true, id: Math.random() },
 ];
-
+console.log(tasks);
 const renderTasks = tasksList => {
   const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
@@ -42,7 +42,7 @@ const completedTask = event => {
   }
 
   const choseCheckbox = event.target.dataset.id;
-  const choseTask = tasks.find(el => el.id == choseCheckbox);
+  const choseTask = tasks.find(el => el.id === +choseCheckbox);
   choseTask.done = event.target.checked;
 
   renderTasks(tasks);
