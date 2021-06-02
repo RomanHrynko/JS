@@ -37,6 +37,8 @@ const order = new Order(1666, 'Lviv', 'Sell');
 console.log(order.checkPrice());
 console.log(order.consfirmOrder());
 console.log(order.isValidType());
+console.log(order.id);
+console.log(order.dateConfirmed);
 
 const order1 = new Order(900, 'Peremozhne', 'Buy');
 console.log(order1.checkPrice());
