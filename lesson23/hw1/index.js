@@ -17,7 +17,7 @@ const renderTasks = tasksList => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
 
-      //если справа зроюлена, додаємо класс на елемент
+      //якщо справа зроюлена, додаємо класс на елемент
 
       if (done) {
         listItemElem.classList.add('list__item_done');
