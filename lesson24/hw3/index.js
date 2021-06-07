@@ -98,7 +98,13 @@ const createTask = () => {
     return;
   }
 
-  tasks.push({ text: inputTaskValue, done: false, id: Math.random() });
+  tasks.push({
+    text: inputTaskValue,
+    done: false,
+    dateStart: new Date(),
+    dateEnd: undefined,
+    id: Math.random(),
+  });
 
   inputTaskElem.value = '';
   renderTasks(tasks);
