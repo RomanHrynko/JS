@@ -5,23 +5,22 @@ export const completedTask = event => {
   const isCheckbox = event.target.classList.contains('list__item-checkbox');
 
   if (!isCheckbox) {
-    return null;
+    return;
   }
-  const taskList = getItem('taskList');
-  const newTaskList = taskList.map(task => {
+
+  const taskList = getItem('tasksList');
+  const newTasksList = taskList.map(task => {
     if (task.id === event.target.dataset.id) {
       const done = event.target.checked;
       return {
         ...task,
         done,
-        dateEnd: choseTask.done ? new Date() : undefined,
+        finishDate: done ? new Date().toISOString() : null,
       };
     }
-
     return task;
   });
-
-  setItem('taskList', newTaskList);
+  setItem('tasksList', newTasksList);
 
   renderTasks();
 };
