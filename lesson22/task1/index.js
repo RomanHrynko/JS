@@ -15,6 +15,15 @@ const logGreyDiv = logTarget.bind(null, 'DIV', 'grey');
 const logGreyP = logTarget.bind(null, 'P', 'grey');
 const logGreySpan = logTarget.bind(null, 'SPAN', 'grey');
 
+divElem.addEventListener('click', logGreyDiv, true);
+divElem.addEventListener('click', logGreenDiv);
+
+pElem.addEventListener('click', logGreyP, true);
+pElem.addEventListener('click', logGreenP);
+
+spanElem.addEventListener('click', logGreySpan, true);
+spanElem.addEventListener('click', logGreenSpan);
+
 const clearButton = document.querySelector('.clear-btn');
 const clearList = () => {
   const eventsListElem = document.querySelector('.events-list');
