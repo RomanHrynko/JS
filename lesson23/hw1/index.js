@@ -33,7 +33,7 @@ const renderTasks = tasksList => {
       checkbox.dataset.id = id;
 
       //checkbox-елемент повинен зчитати з tasks властивість done і встановити значення через властивість "checked"
-      checkbox.checked = done;
+      checkbox.checked = done; // чекбокс повертає true/false (і ми можемо записати в нього true/false)
 
       //в checkbox назначаємо клас
 
@@ -41,14 +41,14 @@ const renderTasks = tasksList => {
 
       //в кожний сформований елемент списка додаємо checkbox і текст
 
-      listItemElem.append(checkbox, text);
+      listItemElem.append(checkbox, text); // пушимо в елемент списка чекбокс і текст з масиву
 
       return listItemElem;
     });
   //перед додаванням задачі обновляємо весь список
   listElem.innerHTML = '';
   //массив створених елементів вставляємо в ".list"
-  listElem.append(...tasksElems);
+  listElem.append(...tasksElems); // пушимо всі створені елементи з їх атрибутами в наш список
 };
 
 //при кліці на checkbox змінити стан елемента
@@ -59,10 +59,10 @@ const completedTask = event => {
     return;
   }
 
-  const choseCheckbox = event.target.dataset.id;
+  const choseCheckbox = event.target.dataset.id; //в змінну закидаємо id чеккбокса на який клікнули
   //слідкувати за типом даних при порівнянні
-  const choseTask = tasks.find(el => el.id === +choseCheckbox);
-  choseTask.done = event.target.checked;
+  const choseTask = tasks.find(el => el.id === +choseCheckbox); //перебираємо масив і якщо знаходимо елемент з таким же id записуємо в змінну
+  choseTask.done = event.target.checked; //в цьому елементі міняємо done на булеве  checked
 
   renderTasks(tasks);
 };
@@ -72,7 +72,7 @@ listElem.addEventListener('click', completedTask);
 //додаємо нове завдання після вводу в поле і натиснення на кнопку Create
 const createTask = () => {
   const inputTaskElem = document.querySelector('.task-input');
-  const inputTaskValue = inputTaskElem.value;
+  const inputTaskValue = inputTaskElem.value; // тут отримуємо дані з поля вводу
   //якщо поле пусте - тоді не додаємо задачу
   if (inputTaskValue === '') {
     return;
@@ -81,8 +81,8 @@ const createTask = () => {
   tasks.push({ text: inputTaskValue, done: false, id: Math.random() });
 
   //перевірити через дебаггер додавання завдання в массив tasks
-  inputTaskElem.value = '';
-  renderTasks(tasks);
+  inputTaskElem.value = ''; // очищаємо поле вводу
+  renderTasks(tasks); // повертаємо наш новий маисв
 };
 
 const buttonElem = document.querySelector('.create-task-btn');
