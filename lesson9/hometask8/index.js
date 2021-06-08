@@ -1,25 +1,63 @@
+// input: obj, obj;
+// output: boolean;
+
+// ALGO:
+// 1. check keys length
+// 2. check every key value, if not equal => false;
+
+// option 1
 // function compareObjects(obj1, obj2) {
-//   if (Object.entries(obj1).length !== Object.entries(obj2).length) {
-//     return false;
-//   }
-//   if (
-//     Object.keys(obj1).some((a, b) => a !== Object.keys(obj2)[b]) ||
-//     Object.values(obj1).some((a, b) => a !== Object.values(obj2)[b])
-//   ) {
-//     return false;
-//   }
-//   return true;
+//   const arr1 = Object.entries(obj1).join(' ');
+//   const arr2 = Object.entries(obj2).join(' ');
+
+//   return arr1 === arr2;
 // }
 
-//
+// option 2
+// function compareObjects(obj1, obj2) {
+//   const key1 = Object.keys(obj1);
+//   const key2 = Object.keys(obj2);
+//   if (key1.length !== key2.length) {
+//     return false;
+//   }
+
+//   return key1.every(key => obj1[key] === obj2[key]);
+// }
+
+// option 3
 function compareObjects(obj1, obj2) {
-  const elementEntries1 = Object.entries(obj1);
-  const elementEntries2 = Object.entries(obj2);
-  if (elementEntries1.join() === elementEntries2.join()) {
-    return true;
+  const key1 = Object.keys(obj1);
+  const key2 = Object.keys(obj2);
+  if (key1.length !== key2.length) {
+    return false;
   }
-  return false;
+
+  return !key1.some(key => obj1[key] !== obj2[key]);
 }
+
+// option 4
+// function compareObjects(obj1, obj2) {
+//   const key1 = Object.keys(obj1);
+//   const key2 = Object.keys(obj2);
+
+//   if (key1.length !== key2.length) {
+//     return false;
+//   }
+
+//   let result = true;
+//   key1.forEach(el => {
+//     if (obj1[el] !== obj2[el]) {
+//       result = false;
+//     }
+//   });
+
+//   return result;
+// }
+
+// option 5
+// function compareObjects(obj1, obj2) {
+//   return JSON.stringify(obj1) === JSON.stringify(obj2);
+// }
 
 // examples
 const obj1 = {
