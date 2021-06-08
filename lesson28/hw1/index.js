@@ -1,71 +1,44 @@
 //put your code here
+const changeDate = (newDate, typeOfDate, value) => {
+  switch (typeOfDate) {
+    case 'years':
+      return newDate.setFullYear(newDate.getFullYear() + value);
+
+    case 'months':
+      return newDate.setMonth(newDate.getMonth() + value);
+
+    case 'days':
+      return newDate.setDate(newDate.getDate() + value);
+
+    case 'hours':
+      return newDate.setHours(newDate.getHours() + value);
+
+    case 'minutes':
+      return newDate.setMinutes(newDate.getMinutes() + value);
+
+    case 'seconds':
+      return newDate.setSeconds(newDate.getSeconds() + value);
+
+    case 'milliseconds':
+      return newDate.setMilliseconds(newDate.getMilliseconds() + value);
+  }
+};
+
 const shmoment = initValue => {
-  const newDate = new Date(initValue);
+  let res = new Date(initValue);
   const objDate = {
     add(typeOfDate, value) {
-      switch (typeOfDate) {
-        case 'years':
-          newDate.setFullYear(newDate.getFullYear() + value);
-          return this;
-
-        case 'months':
-          newDate.setMonth(newDate.getMonth() + value);
-          return this;
-
-        case 'days':
-          newDate.setDate(newDate.getDate() + value);
-          return this;
-
-        case 'hours':
-          newDate.setHours(newDate.getHours() + value);
-          return this;
-
-        case 'minutes':
-          newDate.setMinutes(newDate.getMinutes() + value);
-          return this;
-
-        case 'seconds':
-          newDate.setSeconds(newDate.getSeconds() + value);
-          return this;
-
-        case 'milliseconds':
-          newDate.setMilliseconds(newDate.getMilliseconds() + value);
-          return this;
-      }
+      res = new Date(changeDate(res, typeOfDate, value));
+      return this;
     },
+
     subtract(typeOfDate, value) {
-      switch (typeOfDate) {
-        case 'years':
-          newDate.setFullYear(newDate.getFullYear() - value);
-          return this;
-
-        case 'months':
-          newDate.setMonth(newDate.getMonth() - value);
-          return this;
-
-        case 'days':
-          newDate.setDate(newDate.getDate() - value);
-          return this;
-
-        case 'hours':
-          newDate.setHours(newDate.getHours() - value);
-          return this;
-
-        case 'minutes':
-          newDate.setMinutes(newDate.getMinutes() - value);
-          return this;
-
-        case 'seconds':
-          newDate.setSeconds(newDate.getSeconds() - value);
-          return this;
-
-        case 'milliseconds':
-          newDate.setMilliseconds(newDate.getMilliseconds() - value);
-          return this;
-      }
+      res = new Date(changeDate(res, typeOfDate, -value));
+      return this;
     },
+
     result() {
-      return new Date(newDate);
+      return new Date(res);
     },
   };
 
