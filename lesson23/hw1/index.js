@@ -9,7 +9,7 @@ const tasks = [
 //вибір класу, в якому створюємо елементи "li"
 const listElem = document.querySelector('.list');
 
-//через map, на каждой ітерації створюємо "li", призначаємо класс и додаємо id
+//через map, на кожній ітерації створюємо "li", призначаємо класс и додаємо id
 const renderTasks = tasksList => {
   const tasksElems = tasksList
     .sort((a, b) => a.done - b.done)
