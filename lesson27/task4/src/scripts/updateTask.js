@@ -8,10 +8,10 @@ export const completedTask = event => {
     return;
   }
 
-  const taskList = getItem('taskList') || [];
-  const newTaskList = taskList.map(task => {
-    const choseCheckbox = event.target.dataset.id;
-    if (task.id === +choseCheckbox) {
+  const tasksList = getItem('tasksList') || [];
+  const newTaskList = tasksList.map(task => {
+    const isId = event.target.dataset.id;
+    if (task.id === +isId) {
       const done = event.target.checked;
       return {
         ...task,
@@ -21,7 +21,7 @@ export const completedTask = event => {
     }
     return task;
   });
-  setItem('taskList', newTaskList);
+  setItem('tasksList', newTaskList);
 
   renderTasks();
 };

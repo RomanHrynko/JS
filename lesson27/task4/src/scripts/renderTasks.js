@@ -4,9 +4,9 @@ export const renderTasks = () => {
   const listElem = document.querySelector('.list');
   listElem.innerHTML = '';
 
-  const taskList = getItem('taskList') || [];
+  const tasksList = getItem('tasksList') || [];
 
-  const tasksElems = taskList
+  const tasksElems = tasksList
     .sort((a, b) => a.done - b.done || new Date(b.data) - new Date(a.data))
     .map(({ text, done, id, data }) => {
       const listItemElem = document.createElement('li');

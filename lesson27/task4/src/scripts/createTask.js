@@ -3,22 +3,21 @@ import { getItem, setItem } from './storage.js';
 
 export const createTask = () => {
   const inputTaskElem = document.querySelector('.task-input');
-  const inputTaskValue = inputTaskElem.value;
+  const text = inputTaskElem.value;
 
-  if (inputTaskValue === '') {
+  if (text === '') {
     return;
   }
-
-  const tasks = getItem('taskList') || [];
+  const tasks = getItem('tasksList') || [];
 
   const newTasks = tasks.concat({
-    text: inputTaskValue,
+    text: text,
     done: false,
     id: Math.random(),
     date: Date.now(),
   });
 
-  setItem('taskList', newTasks);
+  setItem('tasksList', newTasks);
 
   renderTasks();
 };
