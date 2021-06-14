@@ -2,37 +2,32 @@ const tasks = [
   {
     text: 'Buy milk',
     done: false,
-    dateStart: new Date(),
-    dateEnd: undefined,
     id: Math.random(),
+    date: Date.now(),
   },
   {
     text: 'Pick up Tom from airport',
     done: false,
-    dateStart: new Date(),
-    dateEnd: undefined,
     id: Math.random(),
+    date: Date.now(),
   },
   {
     text: 'Visit party',
     done: false,
-    dateStart: new Date(),
-    dateEnd: undefined,
     id: Math.random(),
+    date: Date.now(),
   },
   {
     text: 'Visit doctor',
     done: true,
-    dateStart: new Date(),
-    dateEnd: undefined,
     id: Math.random(),
+    date: Date.now(),
   },
   {
     text: 'Buy meat',
     done: true,
-    dateStart: new Date(),
-    dateEnd: undefined,
     id: Math.random(),
+    date: Date.now(),
   },
 ];
 
@@ -41,21 +36,14 @@ const listElem = document.querySelector('.list');
 const renderTasks = tasksList => {
   listElem.innerHTML = '';
   const tasksElems = tasksList
-    .sort((a, b) => {
-      if (a.done - b.done !== 0) {
-        return a.done - b.done;
-      }
-      if (a.done) {
-        return new Date(b.dateEnd) - new Date(a.dateEnd);
-      }
-      return new Date(b.dateStart) - new Date(a.dateStart);
-    })
-    .map(({ text, done, id }) => {
+    .sort((a, b) => a.done - b.done || new Date(b.data) - new Date(a.data))
+    .map(({ text, done, id, data }) => {
       const listItemElem = document.createElement('li');
       listItemElem.classList.add('list__item');
       const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.setAttribute('data-id', id);
+      checkbox.setAttribute('data-data', data);
       checkbox.checked = done;
       checkbox.classList.add('list__item-checkbox');
       if (done) {
@@ -83,7 +71,7 @@ const completedTask = event => {
   const choseTask = tasks.find(el => el.id === +choseCheckbox);
   choseTask.done = event.target.checked;
 
-  choseTask.dateEnd = choseTask.done ? new Date() : undefined;
+  choseTask.date = Date.now();
 
   renderTasks(tasks);
 };
@@ -101,9 +89,8 @@ const createTask = () => {
   tasks.push({
     text: inputTaskValue,
     done: false,
-    dateStart: new Date(),
-    dateEnd: undefined,
     id: Math.random(),
+    date: Date.now(),
   });
 
   inputTaskElem.value = '';
