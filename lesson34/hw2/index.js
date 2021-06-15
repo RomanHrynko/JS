@@ -1,6 +1,5 @@
 const baseUrl = 'https://60c88362afc88600179f73f9.mockapi.io/api/v1/form';
 
-const buttonElem = document.querySelector('.submit-button');
 const inputElem = document.querySelector('.login-form');
 const errorElem = document.querySelector('.error-text');
 
@@ -12,10 +11,9 @@ inputElem.addEventListener('input', onValidInput);
 
 const onSubmitForm = event => {
   event.preventDefault();
-  const formData = [...new FormData(inputElem)].reduce(
-    (acc, [field, value]) => ({ ...acc, [field]: value }),
-    {},
-  );
+
+  const formData = Object.fromEntries(new FormData(inputElem));
+
   fetch(baseUrl, {
     method: 'POST',
     headers: {
@@ -23,9 +21,9 @@ const onSubmitForm = event => {
     },
     body: JSON.stringify(formData),
   })
-    .then(data => data.json())
-    .then(data => {
-      alert(JSON.stringify(data));
+    .then(response => response.json())
+    .then(response => {
+      alert(JSON.stringify(response));
       inputElem.reset();
     })
     .catch(() => {
