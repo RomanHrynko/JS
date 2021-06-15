@@ -1,7 +1,6 @@
 import { renderTasks } from './renderer.js';
 import { setItem } from './storage.js';
 import { deleteTask, getTasksList } from './tasksGateway.js';
-import { onToggleTask } from './updateTask.js';
 
 export const onListClick = event => {
   const deleteBtn = event.target.classList.contains('list-item__delete-btn');
@@ -16,6 +15,4 @@ export const onListClick = event => {
         renderTasks();
       });
   }
-
-  onToggleTask();
 };
