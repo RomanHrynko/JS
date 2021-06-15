@@ -29,7 +29,7 @@ const onSubmitForm = event => {
       inputElem.reset();
     })
     .catch(() => {
-      errorTextEl.textContent = 'Failed to create user';
+      errorElem.textContent = 'Failed to create user';
     });
 };
 
