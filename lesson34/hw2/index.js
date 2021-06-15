@@ -10,20 +10,16 @@ const onValidInput = () => {
 
 inputElem.addEventListener('input', onValidInput);
 
-const createDataForm = formData => {
-  return fetch(baseUrl, {
+const onSubmitForm = () => {
+  const formData = Object.fromEntries(new FormData(inputElem));
+
+  fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(formData),
-  });
-};
-
-const onSubmitForm = () => {
-  const formData = Object.fromEntries(new FormData(inputElem));
-
-  createDataForm(formData)
+  })
     .then(response => response.json())
     .then(response => {
       alert(JSON.stringify(response));
