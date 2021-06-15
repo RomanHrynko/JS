@@ -24,7 +24,7 @@ const createListItem = ({ text, done, id }) => {
   listItemElem.classList.add('list-item', 'list__item');
   const checkboxElem = createCheckbox({ done, id });
   if (done) {
-    listItemElem.classList.add('list-item__done');
+    listItemElem.classList.add('list-item_done');
   }
 
   const textElem = document.createElement('span');
