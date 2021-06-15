@@ -12,12 +12,10 @@ inputElem.addEventListener('input', onValidInput);
 
 const onSubmitForm = event => {
   event.preventDefault();
-
   const formData = [...new FormData(inputElem)].reduce(
     (acc, [field, value]) => ({ ...acc, [field]: value }),
     {},
   );
-
   fetch(baseUrl, {
     method: 'POST',
     headers: {
@@ -25,14 +23,14 @@ const onSubmitForm = event => {
     },
     body: JSON.stringify(formData),
   })
-    .then(response => response.json())
-    .then(response => {
-      alert(JSON.stringify(response));
+    .then(data => data.json())
+    .then(data => {
+      alert(JSON.stringify(data));
       inputElem.reset();
     })
     .catch(() => {
-      errorElem.textContent = 'Failed to create user';
+      errorTextEl.textContent = 'Failed to create user';
     });
 };
 
-buttonElem.addEventListener('submit', onSubmitForm);
+inputElem.addEventListener('submit', onSubmitForm);
