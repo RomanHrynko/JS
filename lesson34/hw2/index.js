@@ -5,12 +5,15 @@ const inputElem = document.querySelector('.login-form');
 const errorElem = document.querySelector('.error-text');
 
 const onValidInput = () => {
+  errorElem.textContent = '';
   inputElem.reportValidity() ? (buttonElem.disabled = false) : (buttonElem.disabled = true);
 };
 
 inputElem.addEventListener('input', onValidInput);
 
-const onSubmitForm = () => {
+const onSubmitForm = event => {
+  event.preventDefault();
+
   const formData = Object.fromEntries(new FormData(inputElem));
 
   fetch(baseUrl, {
