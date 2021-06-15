@@ -1,5 +1,6 @@
 const baseUrl = 'https://60c88362afc88600179f73f9.mockapi.io/api/v1/form';
 
+const buttonElem = document.querySelector('.submit-button');
 const inputElem = document.querySelector('.login-form');
 const errorElem = document.querySelector('.error-text');
 
