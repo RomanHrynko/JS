@@ -5,18 +5,13 @@ const inputElem = document.querySelector('.login-form');
 const errorElem = document.querySelector('.error-text');
 
 const onValidInput = () => {
-  errorElem.textContent = '';
   inputElem.reportValidity() ? (buttonElem.disabled = false) : (buttonElem.disabled = true);
 };
 
 inputElem.addEventListener('input', onValidInput);
 
-const onSubmitForm = event => {
-  event.preventDefault();
-
-  const formData = Object.fromEntries(new FormData(inputElem));
-
-  fetch(baseUrl, {
+const createDataForm = formData => {
+  return fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -24,13 +19,26 @@ const onSubmitForm = event => {
     body: JSON.stringify(formData),
   })
     .then(response => response.json())
+    .then(response => alert(JSON.stringify(response)));
+};
+
+const getFormData = () => {
+  return fetch(baseUrl)
+    .then(response => response.json())
     .then(response => {
-      alert(JSON.stringify(response));
+      alert(JSON.staringify(response));
       inputElem.reset();
     })
     .catch(() => {
       errorElem.textContent = 'Failed to create user';
     });
+};
+
+const onSubmitForm = event => {
+  event.preventDefault();
+  const formData = Object.fromEntries(new FormData(inputElem));
+
+  createDataForm(formData);
 };
 
 buttonElem.addEventListener('submit', onSubmitForm);
