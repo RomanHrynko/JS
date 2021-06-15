@@ -10,8 +10,15 @@ const onValidInput = () => {
 
 inputElem.addEventListener('input', onValidInput);
 
-const createDataForm = formData => {
-  return fetch(baseUrl, {
+const onSubmitForm = event => {
+  event.preventDefault();
+
+  const formData = [...new FormData(inputElem)].reduce(
+    (acc, [field, value]) => ({ ...acc, [field]: value }),
+    {},
+  );
+
+  fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -19,26 +26,13 @@ const createDataForm = formData => {
     body: JSON.stringify(formData),
   })
     .then(response => response.json())
-    .then(response => alert(JSON.stringify(response)));
-};
-
-const getFormData = () => {
-  return fetch(baseUrl)
-    .then(response => response.json())
     .then(response => {
-      alert(JSON.staringify(response));
+      alert(JSON.stringify(response));
       inputElem.reset();
     })
     .catch(() => {
       errorElem.textContent = 'Failed to create user';
     });
-};
-
-const onSubmitForm = event => {
-  event.preventDefault();
-  const formData = Object.fromEntries(new FormData(inputElem));
-
-  createDataForm(formData);
 };
 
 buttonElem.addEventListener('submit', onSubmitForm);
